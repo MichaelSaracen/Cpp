@@ -21,3 +21,15 @@ Normalerweise, wenn man ein Template definiert, und ein Fehler in der Typeninsta
 --- 
 
 ## RAII - Resource Acquisition Is Initialization 
+
+### Was ist RAII?
+
+RAII ist ein zentrales Konzept in C++, das sicherstellt, dass Ressourcen (z. B. Speicher, Dateien, Locks) deterministisch verwaltet werden. Dabei wird eine Ressource in einem Objekt gekapselt, dessen Lebensdauer durch den Gültigkeitsbereich (Scope) bestimmt wird.
+Warum RAII?
+
+- Verhindert Ressourcenlecks (z. B. nicht freigegebener Speicher)
+- Erhöht Sicherheit und Robustheit
+- Reduziert die Komplexität von Code
+
+> [!NOTE]
+> Deterministisch bedeutet, dass das Verhalten eines Systems oder einer Funktion vorhersehbar und reproduzierbar ist. Wenn ein Prozess deterministisch ist, dann liefert er bei gleichen Eingaben immer das gleiche Ergebnis und verhält sich in jeder Ausführung identisch.
