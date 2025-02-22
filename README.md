@@ -5,6 +5,7 @@
 | Move-Semantik | ein Mechanismus zur Optimierung der Speicherverwaltung |
 | RAII | Resource Acquisition Is Initialization |
 | Regelwerk | Die Regel des Drei, Fünf und Null in C++ |
+| RTTI | RTTI (Run-Time Type Information) in C++ |
 | RVO | Return Value Optimization |
 | SFINAE | Substitution Failure Is Not An Error |
 | Value Categories | In C++ gibt es verschiedene Wertekategorien, die beschreiben, wie ein Ausdruck verwendet werden kann |
@@ -111,13 +112,37 @@ Warum?
 |Regel des Fünf	|Falls eine Klasse ressourcenintensive Objekte verwaltet, sollten Move-Konstruktor und Move-Assignment ergänzt werden.	|In C++11 und neuer, wenn Move-Semantik sinnvoll ist.|
 |Regel des Null	|Vermeide eigene Implementierungen, indem du RAII und Standardbibliotheken nutzt.|	Moderne C++-Entwicklung, wenn Standard-Ressourcenklassen genutzt werden können.|
 
+---
 
+<br>
 
+## RTTI (Run-Time Type Information) in C++
 
+> [!NOTE]
+> RTTI steht für Run-Time Type Information und ist ein Mechanismus in C++, der es ermöglicht, zur Laufzeit Informationen über den Typ eines Objekts zu erhalten. Dies ist besonders hilfreich, wenn man mit Vererbung und Polymorphismus arbeitet.
 
+<br>
 
+## Was ist RTTI?
 
+RTTI ermöglicht es, zur Laufzeit den tatsächlichen Typ eines Objekts zu ermitteln, auch wenn man nur einen Zeiger oder eine Referenz auf eine Basisklasse hat. Dadurch lässt sich die richtige Methode oder das richtige Verhalten für das Objekt auswählen, basierend auf seinem tatsächlichen (dynamischen) Typ und nicht nur auf dem statischen Typ des Zeigers oder der Referenz.
 
+<br>
+
+## Wie funktioniert RTTI?
+
+> [!NOTE]
+> RTTI ist in C++ besonders nützlich in Verbindung mit Polymorphismus. Die zentrale Funktion von RTTI ist die Verwendung von typeid und dynamic_cast.
+
+<br>
+
+### typeid
+Mit typeid kann der tatsächliche Typ eines Objekts zur Laufzeit ermittelt werden. Der Ausdruck typeid(obj) gibt ein type_info-Objekt zurück, das Informationen über den Typ von obj enthält.
+
+<br>
+
+### dynamic_cast
+dynamic_cast wird verwendet, um sicherzustellen, dass eine Run-Time-Typprüfung durchgeführt wird, wenn ein Zeiger oder eine Referenz von einer Basisklasse auf eine abgeleitete Klasse konvertiert wird. Es wird eine sichere Umwandlung durchgeführt, die im Falle eines Fehlers (d.h., wenn der Umwandlungstyp nicht korrekt ist) nullptr zurückgibt.
 
 
 ---
@@ -128,20 +153,6 @@ Warum?
 
 > [!NOTE]
 > Return Value Optimization (RVO) ist eine Compiler-Optimierung in C++, die das unnötige Kopieren von Rückgabewerten aus Funktionen vermeidet. Dadurch wird die Performance verbessert, indem ein temporäres Objekt direkt im Speicher des Zielobjekts erstellt wird, anstatt es erst zu kopieren.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
