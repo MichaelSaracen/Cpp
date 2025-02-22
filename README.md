@@ -5,6 +5,7 @@
 | Move-Semantik | ein Mechanismus zur Optimierung der Speicherverwaltung |
 | RAII | Resource Acquisition Is Initialization |
 | Regelwerk | Die Regel des Drei, Fünf und Null in C++ |
+| RVO | Return Value Optimization |
 | SFINAE | Substitution Failure Is Not An Error |
 | Value Categories | In C++ gibt es verschiedene Wertekategorien, die beschreiben, wie ein Ausdruck verwendet werden kann |
 
@@ -109,6 +110,45 @@ Warum?
 |Regel des Drei	|Falls ein Destruktor benötigt wird, dann auch Copy-Konstruktor und Copy-Assignment implementieren.	|In C++98, wenn keine Move-Semantik verfügbar ist.|
 |Regel des Fünf	|Falls eine Klasse ressourcenintensive Objekte verwaltet, sollten Move-Konstruktor und Move-Assignment ergänzt werden.	|In C++11 und neuer, wenn Move-Semantik sinnvoll ist.|
 |Regel des Null	|Vermeide eigene Implementierungen, indem du RAII und Standardbibliotheken nutzt.|	Moderne C++-Entwicklung, wenn Standard-Ressourcenklassen genutzt werden können.|
+
+
+
+
+
+
+
+
+
+
+---
+
+<br>
+
+## Return Value Optimization (RVO) in C++
+
+> [!NOTE]
+> Return Value Optimization (RVO) ist eine Compiler-Optimierung in C++, die das unnötige Kopieren von Rückgabewerten aus Funktionen vermeidet. Dadurch wird die Performance verbessert, indem ein temporäres Objekt direkt im Speicher des Zielobjekts erstellt wird, anstatt es erst zu kopieren.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ---
 
