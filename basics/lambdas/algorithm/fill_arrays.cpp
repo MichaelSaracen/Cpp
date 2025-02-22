@@ -19,7 +19,6 @@ void print(const Args &...args) {
 }
 
 int main() {
-    // {1} mit generate
     vector<int> v1(10);
     int value = 1;
     generate(v1.begin(), v1.end(), [&]() { return value++; });
@@ -51,7 +50,15 @@ int main() {
 }
 
 
-
+/* Ausgabe:
+    Vector mit std::generate vector{1,2,3,4,5,6,7,8,9,10}
+    Vector mit std::iota vector{10,11,12,13,14,15,16,17,18,19}
+    Vector mit std::transform vector{5,5,6,6,7,7,8,8,9,9}
+    Vector mit std::fill_n vector{0,0,0,0,0,0,0,0,0,0}
+    Vector mit std::fill vector{1,1,1,1,1,1,1,1,1,1}
+    Vector mit std::for_each vector{-1,-1,-1,-1,-1,-1,-1,-1,-1,-1}
+    create_vector vector{11,10,9,8,7,6,5,4,3,2}
+ */
 
 
 
