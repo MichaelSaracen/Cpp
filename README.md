@@ -38,6 +38,7 @@ Das Regelwerk für Ressourcenverwaltung in C++ hat sich mit der Weiterentwicklun
 
 Diese Regeln helfen, Ressourcen sicher zu verwalten und Memory Leaks oder doppelte Freigaben zu verhindern.
 
+<br>
 
 ## 1. Regel des Drei (Rule of Three) – C++98
 
@@ -47,6 +48,8 @@ Drei notwendige Methoden:
 - Destruktor – Gibt Ressourcen frei.
 - Copy-Konstruktor – Erstellt eine tiefe Kopie.
 - Copy-Assignment-Operator – Kopiert bestehende Objekte.
+
+<br>
 
 ## 2. Regel des Fünf (Rule of Five) – C++11
 
@@ -63,6 +66,8 @@ Wann ist Move-Semantik sinnvoll?
 
 - Sie vermeidet teure Kopien.
 - Sie erlaubt schnelles Ressourcenstehlen. 
+
+<br>
 
 ## 3. Regel des Null (Rule of Zero) – Moderne C++
 
