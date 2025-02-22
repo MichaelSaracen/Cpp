@@ -125,6 +125,121 @@ Normalerweise, wenn man ein Template definiert, und ein Fehler in der Typeninsta
 > [!NOTE]
 > Substitution passiert, wenn der Compiler anstelle von T einen echten Typ (int, double, std::string, etc.) einsetzt und überprüft, ob der Code damit gültig bleibt.
 
-
 --- 
+
+<br>
+
+# Value Categories
+
+> [!Note]
+> In C++ gibt es verschiedene Wertekategorien, die beschreiben, wie ein Ausdruck verwendet werden kann. Die wichtigsten sind Lvalues und Rvalues, aber es gibt noch feinere Unterteilungen.
+
+<br>
+
+## Lvalue (Left Value)
+
+Ein Lvalue ist ein benannter Speicherbereich, der nach seiner Verwendung weiter existiert. Er kann auf der linken Seite einer Zuweisung stehen.
+
+### 🔹 Beispiele für Lvalues:
+```cpp
+int x = 10;   // x ist ein Lvalue
+x = 20;       // Lvalue kann verändert werden
+
+std::string str = "Hallo"; // str ist ein Lvalue
+str += " Welt";            // Kann verändert werden
+```
+
+<br>
+
+## Rvalue (Right Value)
+
+Ein Rvalue ist ein temporärer Wert, der keinen Namen hat und nur für den aktuellen Ausdruck existiert.
+
+### 🔹 Beispiele für Rvalues:
+
+```cpp
+int y = 5 + 3; // 5 + 3 ergibt 8, das ist ein Rvalue
+int z = 10;  
+int w = z + 2; // (z + 2) ist ein Rvalue
+
+std::string s = "Hallo" + std::string(" Welt"); // Das Ergebnis ist ein Rvalue
+```
+
+### 🚨 Wichtig: Rvalues können nicht auf der linken Seite einer Zuweisung stehen:
+```cpp
+(5 + 3) = 10; // ❌ Fehler: Ein Rvalue kann nicht verändert werden!
+```
+
+<br>
+
+## Lvalue-Referenz (T&)
+
+Lvalues können an Referenzen übergeben werden:
+
+```cpp
+int a = 10;
+int& ref = a;  // OK: Lvalue-Referenz auf Lvalue
+ref = 20;      // Ändert a
+```
+
+### Ein Rvalue kann nicht direkt an eine Lvalue-Referenz übergeben werden:
+```cpp
+int& r = 5; // ❌ Fehler: 5 ist ein Rvalue
+```
+
+<br>
+
+## Rvalue-Referenz (T&&)
+
+Mit Rvalue-Referenzen (T&&) kann man temporäre Objekte (Rvalues) fangen und weiterverwenden. Das ist die Grundlage der Move-Semantik.
+
+```cpp
+int&& r = 5;  // OK: Rvalue-Referenz auf ein Rvalue
+```
+
+### Das wird z. B. in Move-Konstruktoren genutzt:
+
+```cpp
+class MyClass {
+public:
+    MyClass(MyClass&& other) { 
+        std::cout << "Move-Konstruktor\n"; 
+    }
+};
+```
+
+<br>
+
+## Weitere Kategorien
+
+### Zusätzlich gibt es noch:
+
+- Prvalue (Pure Rvalue) → Ein reiner temporärer Wert, z. B. 42, x + y
+- Xvalue (Expiring Value) → Ein Wert, der bald zerstört wird, z. B. std::move(obj)
+- Glvalue (Generalized Lvalue) → Überbegriff für Lvalues und Xvalues
+
+---
+
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
