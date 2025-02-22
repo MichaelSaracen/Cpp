@@ -2,9 +2,26 @@
 
 | Konzept |  |
 |--|--|
+| Move-Semantik | ein Mechanismus zur Optimierung der Speicherverwaltung |
 | RAII | Resource Acquisition Is Initialization |
 | Regelwerk | Die Regel des Drei, Fünf und Null in C++ |
 | SFINAE | Substitution Failure Is Not An Error |
+| Value Categories | In C++ gibt es verschiedene Wertekategorien, die beschreiben, wie ein Ausdruck verwendet werden kann |
+
+---
+
+<br>
+
+## Move-Semantik in C++
+
+> [!NOTE]
+> Die Move-Semantik in C++ ist ein Mechanismus zur Optimierung der Speicherverwaltung und zur Vermeidung unnötiger Kopien. Sie wurde mit C++11 eingeführt und nutzt Ressourcenverschiebung (Resource Transfer) statt Kopieren.
+
+Die Move-Semantik in C++ ermöglicht es, Ressourcen (z. B. Speicher oder Dateihandles) von einem Objekt auf ein anderes zu verschieben, anstatt sie zu kopieren. Dadurch werden unnötige Kopien vermieden, was die Leistung verbessert.
+
+Dafür nutzt C++ Rvalue-Referenzen (&&). Wenn ein Objekt ein temporärer Wert (Rvalue) ist, kann es „günstig“ in ein anderes Objekt verschoben werden, ohne eine vollständige Kopie zu erzeugen. Das passiert zum Beispiel bei der Rückgabe von Objekten aus Funktionen oder bei std::move(), das ein Lvalue in ein Rvalue umwandelt.
+
+Die Move-Semantik wird hauptsächlich in Move-Konstruktoren und Move-Zuweisungsoperatoren verwendet. Sie ist besonders nützlich für Klassen, die mit dynamischen Ressourcen arbeiten, wie std::vector, std::string oder std::unique_ptr.
 
 ---
 
