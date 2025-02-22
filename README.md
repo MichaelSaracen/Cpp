@@ -83,6 +83,8 @@ Warum?
 - Verhindert Memory Leaks und Fehler.
 - Nutzt RAII voll aus.
 
+<br>
+
 ## Vergleich der Regeln: Wann welche anwenden?
 
 |Regel	|Beschreibung	|Wann verwenden?|
