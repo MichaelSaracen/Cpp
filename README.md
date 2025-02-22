@@ -2,9 +2,93 @@
 
 | Konzept |  |
 |--|--|
+| RAII | Resource Acquisition Is Initialization |
+| Regelwerk | Die Regel des Drei, Fünf und Null in C++ |
 | SFINAE | Substitution Failure Is Not An Error |
 
 ---
+
+<br>
+
+## RAII - Resource Acquisition Is Initialization 
+
+### Was ist RAII?
+
+RAII ist ein zentrales Konzept in C++, das sicherstellt, dass Ressourcen (z. B. Speicher, Dateien, Locks) deterministisch verwaltet werden. Dabei wird eine Ressource in einem Objekt gekapselt, dessen Lebensdauer durch den Gültigkeitsbereich (Scope) bestimmt wird.
+Warum RAII?
+
+- Verhindert Ressourcenlecks (z. B. nicht freigegebener Speicher)
+- Erhöht Sicherheit und Robustheit
+- Reduziert die Komplexität von Code
+
+> [!NOTE]
+> Deterministisch bedeutet, dass das Verhalten eines Systems oder einer Funktion vorhersehbar und reproduzierbar ist. Wenn ein Prozess deterministisch ist, dann liefert er bei gleichen Eingaben immer das gleiche Ergebnis und verhält sich in jeder Ausführung identisch.
+
+---
+
+<br>
+
+# Regelwerk - Die Regel des Drei, Fünf und Null in C++ 
+
+Das Regelwerk für Ressourcenverwaltung in C++ hat sich mit der Weiterentwicklung der Sprache weiterentwickelt. Heute gibt es drei wichtige Regeln:
+
+- Regel des Drei (Rule of Three) – C++98
+- Regel des Fünf (Rule of Five) – C++11
+- Regel des Null (Rule of Zero) – Moderne C++-Ansätze
+
+Diese Regeln helfen, Ressourcen sicher zu verwalten und Memory Leaks oder doppelte Freigaben zu verhindern.
+
+
+## 1. Regel des Drei (Rule of Three) – C++98
+
+Die Regel des Drei besagt, dass, wenn eine Klasse einen eigenen Destruktor benötigt (weil sie eine Ressource verwaltet, z. B. Speicher, Datei-Handles, Netzwerkverbindungen), dann sollte sie auch einen eigenen Copy-Konstruktor und Copy-Assignment-Operator implementieren.
+Drei notwendige Methoden:
+
+- Destruktor – Gibt Ressourcen frei.
+- Copy-Konstruktor – Erstellt eine tiefe Kopie.
+- Copy-Assignment-Operator – Kopiert bestehende Objekte.
+
+## 2. Regel des Fünf (Rule of Five) – C++11
+
+Mit C++11 wurden Move-Semantik und r-Werte eingeführt. Dadurch kamen zwei weitere wichtige Methoden hinzu:
+Fünf notwendige Methoden:
+
+- Destruktor
+- Copy-Konstruktor
+- Copy-Assignment-Operator
+- Move-Konstruktor – Übernimmt Ressourcen eines temporären Objekts.
+- Move-Assignment-Operator – Übernimmt Ressourcen und gibt alte frei.
+
+Wann ist Move-Semantik sinnvoll?
+
+- Sie vermeidet teure Kopien.
+- Sie erlaubt schnelles Ressourcenstehlen. 
+
+## 3. Regel des Null (Rule of Zero) – Moderne C++
+
+Die Regel des Null (Rule of Zero) sagt:
+
+> [!NOTE]
+> Schreibe überhaupt keine dieser fünf Methoden!
+> Nutze stattdessen smarte Pointer (std::unique_ptr, std::shared_ptr) und andere Standardklassen.
+
+Warum?
+
+- Keine manuelle Speicherverwaltung notwendig.
+- Verhindert Memory Leaks und Fehler.
+- Nutzt RAII voll aus.
+
+## Vergleich der Regeln: Wann welche anwenden?
+
+|Regel	|Beschreibung	|Wann verwenden?|
+|---|---|---|
+|Regel des Drei	|Falls ein Destruktor benötigt wird, dann auch Copy-Konstruktor und Copy-Assignment implementieren.	|In C++98, wenn keine Move-Semantik verfügbar ist.|
+|Regel des Fünf	|Falls eine Klasse ressourcenintensive Objekte verwaltet, sollten Move-Konstruktor und Move-Assignment ergänzt werden.	|In C++11 und neuer, wenn Move-Semantik sinnvoll ist.|
+|Regel des Null	|Vermeide eigene Implementierungen, indem du RAII und Standardbibliotheken nutzt.|	Moderne C++-Entwicklung, wenn Standard-Ressourcenklassen genutzt werden können.|
+
+---
+
+<br>
 
 ## SFINAE - Substitution Failure Is Not An Error
 
@@ -20,16 +104,3 @@ Normalerweise, wenn man ein Template definiert, und ein Fehler in der Typeninsta
 
 --- 
 
-## RAII - Resource Acquisition Is Initialization 
-
-### Was ist RAII?
-
-RAII ist ein zentrales Konzept in C++, das sicherstellt, dass Ressourcen (z. B. Speicher, Dateien, Locks) deterministisch verwaltet werden. Dabei wird eine Ressource in einem Objekt gekapselt, dessen Lebensdauer durch den Gültigkeitsbereich (Scope) bestimmt wird.
-Warum RAII?
-
-- Verhindert Ressourcenlecks (z. B. nicht freigegebener Speicher)
-- Erhöht Sicherheit und Robustheit
-- Reduziert die Komplexität von Code
-
-> [!NOTE]
-> Deterministisch bedeutet, dass das Verhalten eines Systems oder einer Funktion vorhersehbar und reproduzierbar ist. Wenn ein Prozess deterministisch ist, dann liefert er bei gleichen Eingaben immer das gleiche Ergebnis und verhält sich in jeder Ausführung identisch.
