@@ -2,6 +2,8 @@
 #define FUNCS_H
 
 #include <iostream>
+#include <vector>
+#include <algorithm>
 
 struct Person {
     std::string name;
@@ -9,6 +11,10 @@ struct Person {
 };
 
 namespace funcs {
+
+    using PersonVector = std::vector<Person>;
+    using IntVector = std::vector<int>;
+    using StringVector = std::vector<std::string>;
 
     inline std::ostream& operator<<(std::ostream& os, const Person& person) {
         os << "Person{name=" << person.name << ", age=" << person.age << "}";
@@ -30,8 +36,5 @@ namespace funcs {
         ((std::cout << args << " "), ...) << std::endl;
     }
 }
-
-
-
 
 #endif //FUNCS_H
