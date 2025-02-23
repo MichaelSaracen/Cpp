@@ -2,13 +2,145 @@
 
 | Konzept |  |
 |--|--|
+| Allocator | |
+| Auto-Storage Duration | |
+| Bit Fields | |
+| Compiler-Annotations | spezielle Attribute, die dem Compiler zusätzliche Hinweise geben, wie er den Code optimieren oder verarbeiten soll. |
+| Constexpr | |
+| Expression Templates | |
+| Forward Declaration | |
+| Inline-Funktionen | |
 | Move-Semantik | ein Mechanismus zur Optimierung der Speicherverwaltung |
+| Overloading und Overriding | |
 | RAII | Resource Acquisition Is Initialization |
 | Regelwerk | Die Regel des Drei, Fünf und Null in C++ |
 | RTTI | RTTI (Run-Time Type Information) in C++ |
 | RVO | Return Value Optimization |
 | SFINAE | Substitution Failure Is Not An Error |
+| Smart Pointers | |
+| Template Metaprogramming | |
+| Type Deduction | |
+| Type Traits | |
 | Value Categories | In C++ gibt es verschiedene Wertekategorien, die beschreiben, wie ein Ausdruck verwendet werden kann |
+| Variadic Templates | |
+
+
+---
+
+<br>
+
+# Allocator
+
+> [!NOTE]
+> Ein Mechanismus zur benutzerdefinierten Verwaltung von Speicher in C++-Containerklassen, der mehr Kontrolle über die Speicherzuweisung bietet.
+
+
+---
+
+<br>
+
+# Auto-Storage Duration
+
+> [!NOTE]
+> Variablen, die eine "auto"-Speicherlebensdauer haben, wie z.B. lokale Variablen, die beim Eintritt in eine Funktion erzeugt und beim Verlassen zerstört werden.
+
+
+
+
+
+
+---
+
+<br>
+
+# Bit Fields
+
+> [!NOTE]
+> Bitfelder ermöglichen es, strukturierte Daten auf niedrigster Ebene zu manipulieren, wobei der Platzbedarf von Variablen optimiert wird.
+
+
+
+
+---
+
+<br>
+
+# Compiler-Annotations in C++
+
+> [!NOTE]
+> Compiler-Annotations in C++ sind spezielle Attribute, die dem Compiler zusätzliche Hinweise geben, wie er den Code optimieren oder verarbeiten soll. Diese Anmerkungen haben keinen Einfluss auf das Verhalten des Programms zur Laufzeit, können jedoch die Effizienz und Lesbarkeit des Codes erhöhen, indem sie dem Compiler bei der Entscheidung helfen, wie er den Code verarbeitet.
+
+Zu den häufigsten Compiler-Annotations gehören:
+
+- `[[nodiscard]]`: Markiert den Rückgabewert einer Funktion als wichtig, sodass der Compiler eine Warnung ausgibt, wenn der Rückgabewert ignoriert wird. Dies hilft, Fehler zu vermeiden, bei denen wichtige Informationen verloren gehen.
+
+- `[[likely]]` und `[[unlikely]]`: Diese Attribute geben dem Compiler Hinweise zur Wahrscheinlichkeit, dass ein bestimmter Codepfad ausgeführt wird. [[likely]] signalisiert, dass der Pfad wahrscheinlich ausgeführt wird, während [[unlikely]] darauf hinweist, dass der Pfad weniger wahrscheinlich ist. Diese Informationen können verwendet werden, um die Branch-Vorhersage zu optimieren und die Leistung zu verbessern.
+
+- `[[maybe_unused]]`: Zeigt an, dass eine Variable, Funktion oder ein anderes Symbol möglicherweise nicht verwendet wird. Der Compiler kann dann Warnungen vermeiden, die ansonsten beim Vorhandensein ungenutzter Code-Teile ausgelöst würden.
+
+- `[[nodiscard]]`: Ein weiteres nützliches Attribut, das für den Rückgabewert von Funktionen verwendet wird, wenn dieser unbedingt beachtet werden muss. Das ist insbesondere bei Funktionen wichtig, die kritische Informationen liefern.
+
+- `[[deprecated]]`: Wird verwendet, um zu kennzeichnen, dass eine Funktion oder ein Feature in einer zukünftigen Version von C++ nicht mehr unterstützt wird. Der Compiler gibt eine Warnung aus, wenn diese veralteten Funktionen verwendet werden, um Entwickler auf die Notwendigkeit der Migration hinzuweisen.
+
+- `[[fallthrough]]`: Ein Hinweis, dass in einem switch-Statement das Fall-Label absichtlich "durchfällt". Normalerweise gibt der Compiler eine Warnung, wenn ein Fall ohne ein break-Statement durchfällt, aber mit [[fallthrough]] kann dies explizit erlaubt werden.
+
+- `[[nodiscard]]`: Ein weiteres Attribut, das darauf hinweist, dass eine Rückgabe einer Funktion nicht ignoriert werden sollte, da der Rückgabewert eine Bedeutung hat.
+
+- `[[carries_dependency]]`: Wird in multithreaded Anwendungen verwendet, um dem Compiler mitzuteilen, dass eine Variable eine Abhängigkeit aufweist, die über mehrere Threads hinweg beachtet werden muss.
+
+Diese Anmerkungen helfen dem Compiler, den Code effizienter zu optimieren und Fehler zu vermeiden, indem sie explizit auf wichtige Aspekte des Codes hinweisen. Sie bieten Entwicklern eine einfache Möglichkeit, das Verhalten des Compilers zu steuern und die Codequalität zu verbessern.
+
+
+
+
+---
+
+<br>
+
+# Constexpr
+
+> [!NOTE]
+> Ein Mechanismus, der es ermöglicht, dass Funktionen zur Compile-Zeit ausgewertet werden, was zu einer höheren Leistung führen kann.
+
+
+
+---
+
+<br>
+
+# Expression Templates
+
+> [!NOTE]
+> Ein fortgeschrittenes Konzept, das es ermöglicht, mathematische Ausdrücke während der Kompilierung zu optimieren und die Auswertungsreihenfolge festzulegen.
+
+
+
+
+
+---
+
+<br>
+
+# Forward Declaration
+
+> [!NOTE]
+> Ein Konzept, das es ermöglicht, auf ein noch nicht definiertes Element zu verweisen (z.B. bei Zeigern auf noch nicht deklarierte Typen).
+
+
+
+
+---
+
+<br>
+
+# Inline-Funktionen
+
+> [!NOTE]
+> Inline-Funktionen werden vom Compiler direkt an der Stelle eingefügt, an der sie aufgerufen werden, um Overhead zu vermeiden.
+
+
+
+
 
 ---
 
@@ -24,6 +156,25 @@ Die Move-Semantik in C++ ermöglicht es, Ressourcen (z. B. Speicher oder Dateiha
 Dafür nutzt C++ Rvalue-Referenzen (&&). Wenn ein Objekt ein temporärer Wert (Rvalue) ist, kann es „günstig“ in ein anderes Objekt verschoben werden, ohne eine vollständige Kopie zu erzeugen. Das passiert zum Beispiel bei der Rückgabe von Objekten aus Funktionen oder bei std::move(), das ein Lvalue in ein Rvalue umwandelt.
 
 Die Move-Semantik wird hauptsächlich in Move-Konstruktoren und Move-Zuweisungsoperatoren verwendet. Sie ist besonders nützlich für Klassen, die mit dynamischen Ressourcen arbeiten, wie std::vector, std::string oder std::unique_ptr.
+
+
+---
+
+<br>
+
+# Overloading und Overriding
+
+> [!NOTE]
+> Das Überladen von Funktionen und das Überschreiben von virtuellen Funktionen in abgeleiteten Klassen sind grundlegende Mechanismen der Polymorphie in C++.
+
+
+
+
+
+
+
+
+
 
 ---
 
@@ -176,6 +327,58 @@ Normalerweise, wenn man ein Template definiert, und ein Fehler in der Typeninsta
 > [!NOTE]
 > Substitution passiert, wenn der Compiler anstelle von T einen echten Typ (int, double, std::string, etc.) einsetzt und überprüft, ob der Code damit gültig bleibt.
 
+
+
+---
+
+<br>
+
+# Smart Pointers
+
+> [!NOTE]
+> Diese sind Teil der modernen C++-Speicherverwaltung und beinhalten `std::unique_ptr`, `std::shared_ptr` und `std::weak_ptr`, die den Umgang mit Speicherressourcen sicherer und effizienter machen.
+
+
+
+
+---
+
+<br>
+
+# Template Metaprogramming
+
+> [!NOTE]
+> Ein fortgeschrittener Mechanismus, der Templates zur Compile-Zeit verwendet, um Code zu generieren oder zu optimieren.
+
+
+
+---
+
+<br>
+
+# Typenabgleich (Type Deduction)
+
+> [!NOTE]
+> In C++11+ wird der Typ von Variablen oft automatisch abgeleitet (z.B. durch auto), was den Code kompakter und weniger fehleranfällig macht.
+
+
+
+
+---
+
+<br>
+
+# Type Traits
+
+> [!NOTE]
+> Ein Mechanismus, der es ermöglicht, zur Compile-Zeit Informationen über den Typ zu erhalten (z.B. `std::is_integral`, `std::is_pointer`).
+
+
+
+
+
+
+
 --- 
 
 <br>
@@ -272,6 +475,55 @@ public:
 ---
 
 <br>
+
+
+
+
+
+
+---
+
+<br>
+
+# Variadic Templates
+
+> [!NOTE]
+> Mit Variadic Templates können Funktionen und Klassen mit einer beliebigen Anzahl von Parametern definiert werden, was besonders in Template-Metaprogrammierung und bei der Implementierung von Wrappern nützlich ist.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
