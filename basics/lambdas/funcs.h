@@ -3,7 +3,18 @@
 
 #include <iostream>
 
+struct Person {
+    std::string name;
+    int age;
+};
+
 namespace funcs {
+
+    inline std::ostream& operator<<(std::ostream& os, const Person& person) {
+        os << "Person{name=" << person.name << ", age=" << person.age << "}";
+        return os;
+    }
+
     template <typename T>
     std::ostream& operator<<(std::ostream& os, const std::vector<T>& vector) {
         os << "vector{";
@@ -13,6 +24,10 @@ namespace funcs {
         return os;
     }
 
+
+
+
+
     template <typename ...Args>
     void print(Args ...args) {
         std::cout << std::boolalpha;
@@ -21,7 +36,9 @@ namespace funcs {
 
 
 
-};
+}
+
+
 
 
 #endif //FUNCS_H
