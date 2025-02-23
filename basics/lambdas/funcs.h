@@ -24,10 +24,6 @@ namespace funcs {
         return os;
     }
 
-
-
-
-
     template <typename ...Args>
     void print(Args ...args) {
         std::cout << std::boolalpha;
