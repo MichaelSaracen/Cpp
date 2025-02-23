@@ -29,9 +29,6 @@ namespace funcs {
         std::cout << std::boolalpha;
         ((std::cout << args << " "), ...) << std::endl;
     }
-
-
-
 }
 
 
