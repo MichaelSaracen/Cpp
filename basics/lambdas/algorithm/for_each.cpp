@@ -18,3 +18,13 @@ int main() {
     for_each(vec.begin(), vec.end(), [&sum](int x) { sum += x; });
     print("Summe der Elemente:", sum);
 }
+
+/* Ausgabe
+vector{1,4,9,16,25}
+
+Hallo Alice!
+Hallo Bob!
+Hallo Charlie!
+
+Summe der Elemente: 55
+ */
