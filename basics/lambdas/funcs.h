@@ -15,6 +15,8 @@ namespace funcs {
     using PersonVector = std::vector<Person>;
     using IntVector = std::vector<int>;
     using StringVector = std::vector<std::string>;
+    using BoolVector = std::vector<bool>;
+    using BoolVector2D = std::vector<std::vector<bool>>;
 
     inline std::ostream& operator<<(std::ostream& os, const Person& person) {
         os << "Person{name=" << person.name << ", age=" << person.age << "}";
@@ -27,11 +29,13 @@ namespace funcs {
         for ( int i = 0; i < vector.size(); i++) {
             os << vector[i] << ( i < vector.size() - 1 ? "," : "}");
         }
+
         return os;
     }
 
     template <typename ...Args>
     void print(Args ...args) {
+
         std::cout << std::boolalpha;
         ((std::cout << args << " "), ...) << std::endl;
     }
